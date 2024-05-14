@@ -73,7 +73,7 @@ const App = () => {
           <input
             id="todo-title"
             type="text"
-            maxLength={10}
+            maxLength={9}
             value={title}
             onChange={(event) => {
               setTitle(event.target.value);

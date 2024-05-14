@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import logoImg from "../public/assets/logo.png"
+import logoImg from "../public/assets/logo.png";
 import Todolist from "./myComponents/Todolist";
 
 const App = () => {
@@ -8,7 +8,8 @@ const App = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
-  let onChangeHandler = () => {
+  let onChangeHandler = (event) => {
+    event.preventDefault();
     if (!title) {
       alert("제목을 입력하세요");
       return;
@@ -66,7 +67,7 @@ const App = () => {
           <h3>React</h3>
         </div>
       </header>
-      <div id="todo-input-box">
+      <form id="todo-input-box" onSubmit={onChangeHandler}>
         <div className="input-value">
           <label htmlFor="sub-title">제목</label>
           <input
@@ -90,12 +91,12 @@ const App = () => {
           />
         </div>
         <div className="add-btn">
-          <button onClick={onChangeHandler}>추가하기</button>
+          <button type="submit">추가하기</button>
         </div>
-      </div>
+      </form>
       <div id="working-box">
         <div className="working-title">
-          <h3>Working..🔥</h3>
+          <h3>🔥 Working List 🔥</h3>
         </div>
         <ul>
           {todo
@@ -115,7 +116,7 @@ const App = () => {
       </div>
       <div id="done-box">
         <div className="done-title">
-          <h3>Done..🎉</h3>
+          <h3>🎉 Done List 🎉</h3>
         </div>
         <ul>
           {todo

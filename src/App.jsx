@@ -60,7 +60,7 @@ const App = () => {
           <h3>My Todo List</h3>
         </div>
         <div id="logo">
-          <img src='./public/assets/logo.png' alt="logo" />
+          <img src='public/assets/logo.png' alt="logo" />
         </div>
         <div id="library">
           <h3>React</h3>

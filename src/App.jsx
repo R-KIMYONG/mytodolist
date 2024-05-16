@@ -18,7 +18,7 @@ const App = () => {
       return;
     }
     let newContents = {
-      id: todo.length + 1,
+      id: new Date().getTime(),
       title: title,
       content: content,
       isDone: false,

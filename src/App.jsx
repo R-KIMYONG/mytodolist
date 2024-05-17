@@ -1,58 +1,11 @@
 import { useState } from "react";
 import "./App.css";
 import logoImg from "../public/assets/logo.png";
-import Todolist from "./myComponents/Todolist";
+import Addtodolist from "./mycomponents/Addtodolist.jsx";
+import Todolistform from "./mycomponents/Todolistform.jsx";
 
 const App = () => {
-  const [todo, setTodo] = useState([]);
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-
-  let onChangeHandler = (event) => {
-    event.preventDefault();
-    if (!title) {
-      alert("제목을 입력하세요");
-      return;
-    } else if (!content) {
-      alert("내용을 입력하세요");
-      return;
-    }
-    let newContents = {
-      id: new Date().getTime(),
-      title: title,
-      content: content,
-      isDone: false,
-    };
-    setTodo([...todo, newContents]);
-    setTitle("");
-    setContent("");
-    document.querySelector("#todo-title").value = "";
-    document.querySelector("#todo-value").value = "";
-  };
-  let complet = (event) => {
-    let completId = event.target.parentNode.parentNode.id;
-
-    let updateTodolist = todo.map((item) => {
-      return item.id === Number(completId) ? { ...item, isDone: true } : item;
-    });
-    setTodo(updateTodolist);
-  };
-  let cansel = (event) => {
-    let completId = event.target.parentNode.parentNode.id;
-
-    let updateTodolist = todo.map((item) => {
-      return item.id === Number(completId) ? { ...item, isDone: false } : item;
-    });
-
-    setTodo(updateTodolist);
-  };
-  let delBtn = (event) => {
-    let completId = event.target.parentNode.parentNode.id;
-
-    let updateTodolist = todo.filter((item) => item.id != Number(completId));
-
-    setTodo(updateTodolist);
-  };
+  const [todolist, setTodolist] = useState([]);
 
   return (
     <div id="main">
@@ -67,73 +20,17 @@ const App = () => {
           <h3>React</h3>
         </div>
       </header>
-      <form id="todo-input-box" onSubmit={onChangeHandler}>
-        <div className="input-value">
-          <label htmlFor="sub-title">제목</label>
-          <input
-            id="todo-title"
-            type="text"
-            maxLength={8}
-            value={title}
-            onChange={(event) => {
-              setTitle(event.target.value);
-            }}
-          />
-          <label htmlFor="sub-value">내용</label>
-          <input
-            id="todo-value"
-            type="text"
-            maxLength={35}
-            value={content}
-            onChange={(event) => {
-              setContent(event.target.value);
-            }}
-          />
-        </div>
-        <div className="add-btn">
-          <button type="submit">추가하기</button>
-        </div>
-      </form>
-      <div id="working-box">
-        <div className="working-title">
-          <h3>🔥 Working List 🔥</h3>
-        </div>
-        <ul>
-          {todo
-            .filter((item) => !item.isDone)
-            .map((item, index) => {
-              return (
-                <Todolist
-                  item={item}
-                  key={index}
-                  complet={complet}
-                  del={delBtn}
-                  cansel={cansel}
-                />
-              );
-            })}
-        </ul>
-      </div>
-      <div id="done-box">
-        <div className="done-title">
-          <h3>🎉 Done List 🎉</h3>
-        </div>
-        <ul>
-          {todo
-            .filter((item) => item.isDone == true)
-            .map((item, index) => {
-              return (
-                <Todolist
-                  item={item}
-                  key={index}
-                  complet={complet}
-                  del={delBtn}
-                  cansel={cansel}
-                />
-              );
-            })}
-        </ul>
-      </div>
+      <Addtodolist setTodolist={setTodolist} todolist={todolist} />
+      <Todolistform
+        todolist={todolist}
+        iswork={false}
+        setTodolist={setTodolist}
+      />
+      <Todolistform
+        todolist={todolist}
+        iswork={true}
+        setTodolist={setTodolist}
+      />
     </div>
   );
 };

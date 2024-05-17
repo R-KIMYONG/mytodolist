@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./App.css";
 import logoImg from "../public/assets/logo.png";
-import Addtodolist from "./mycomponents/Addtodolist.jsx";
-import Todolistform from "./mycomponents/Todolistform.jsx";
+import Addtodolist from "./myComponents/Addtodolist.jsx";
+import Todolistform from "./myComponents/Todolistform.jsx";
 
 const App = () => {
   const [todolist, setTodolist] = useState([]);

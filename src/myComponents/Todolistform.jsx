@@ -1,4 +1,4 @@
-import Todolist from "./Todolist";
+import Todolist from "./Todolist.jsx";
 
 const Todolistform = ({ todolist, iswork, setTodolist }) => {
   return (
@@ -12,7 +12,6 @@ const Todolistform = ({ todolist, iswork, setTodolist }) => {
           iswork={iswork}
           setTodolist={setTodolist}
         />
-        ;
       </div>
     </>
   );
